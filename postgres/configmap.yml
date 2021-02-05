@@ -7,4 +7,4 @@ metadata:
 data:
   POSTGRES_DB: demodb 
   POSTGRES_USER: demouser 
-  POSTGRES_PASSWORD: demosecret 
+  POSTGRES_PASSWORD: demopass

@@ -2,7 +2,7 @@
 set -e
 shopt -s expand_aliases
 alias kubectl='microk8s kubectl'
-# kubectl apply -f mysql-pv.yml
 kubectl delete -f mysql-deployment.yml 
+kubectl delete -f mysql-pv.yml
 
 # psql -h localhost -U postgresadmin1 --password -p 31070 postgresdb

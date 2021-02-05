@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 shopt -s expand_aliases
 alias kubectl='microk8s kubectl'
 ip=$(kubectl get svc | grep postgres-service | awk '{print $3}')
 export PGHOST=$ip
 export PGDATABASE=demodb
 export PGUSER=demouser
-export PGPASSWORD=demosecret
-# https://www.postgresql.org/docs/13/libpq-envars.html
+export PGPASSWORD=demopass
+
+# PGHOST=$ip
+# PGDATABASE=demodb
+# PGUSER=demouser
+# PGPASSWORD=demopass
+
 
 get_info(){
   kubectl get pods 
@@ -17,9 +22,17 @@ get_info(){
   kubectl get deploy 
 }
 
+
 test_pg(){
-  # psql -h $ip -U amazinguser -d awesomedb  < sqltest.sql 
+  echo "PGPASSWORD=$PGPASSWORD psql -h $PGHOST -U $PGUSER -d $PGDATABASE"
   psql < sqltest.sql 
+  # psql -h $PGHOST -U $PGUSER -d $PGDATABASE < sqltest.sql
 }
 
+# echo "PGPASSWORD=$PGPASSWORD psql -h $PGHOST -U $PGUSER -d $PGDATABASE"
+#  psql -h $PGHOST -U $PGUSER -d $PGDATABASE < sqltest.sql
+# test_pg "$@"
+# test_pg $PGHOST $PGUSER $PGDATABASE 
 test_pg
+kubectl get pod
+kubectl logs postgres-
