@@ -10,3 +10,9 @@ A playground of kubernetes fun with examples.
 # Examples
 - postgres
 - mysql
+
+
+Some examples
+```
+kubectl exec --stdin --tty postgres-5c64546cbf-tmrgl -- /bin/bash
+```

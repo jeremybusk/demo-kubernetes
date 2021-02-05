@@ -8,9 +8,8 @@ kubectl create -f configmap.yml
 kubectl create -f storage.yml
 kubectl create -f storageclass.yml
 kubectl create -f service.yml
-# kubectl create -f statefulset.yml
 kubectl create -f deployment.yml
+kubectl create -f statefulset.yml
 kubectl get svc postgres-service
 sleep $sleep
-
 ./test

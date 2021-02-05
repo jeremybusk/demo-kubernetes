@@ -8,7 +8,7 @@ export PGHOST=$podip
 export PGDATABASE=demodb
 export PGUSER=demouser
 export PGPASSWORD=demopass
-sleep=2
+sleep=1
 
 
 get_info(){

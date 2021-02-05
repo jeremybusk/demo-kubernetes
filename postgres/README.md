@@ -33,3 +33,7 @@ sudo ip route add 10.152.183.170(nodeport) via 10.x.x.x(kubegateway)
 dnat
 ```
 ```
+
+```
+kubectl exec --stdin --tty postgres-5c64546cbf-tmrgl -- /bin/bash
+```
