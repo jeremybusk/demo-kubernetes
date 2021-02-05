@@ -37,3 +37,8 @@ dnat
 ```
 kubectl exec --stdin --tty postgres-5c64546cbf-tmrgl -- /bin/bash
 ```
+
+Tear down and build up
+```
+./delete && ./apply
+```
