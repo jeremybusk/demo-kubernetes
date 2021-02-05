@@ -16,3 +16,9 @@ Some examples
 ```
 kubectl exec --stdin --tty postgres-5c64546cbf-tmrgl -- /bin/bash
 ```
+
+Nice aliases at bottom of ~/.bashrc
+```
+alias kubectl='microk8s kubectl'
+alias k='microk8s kubectl'
+```
