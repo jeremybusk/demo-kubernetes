@@ -5,17 +5,11 @@ alias kubectl='microk8s kubectl'
 sleep=10
 
 kubectl create -f configmap.yml
-# sleep $sleep
 kubectl create -f storage.yml
-#sleep $sleep
 kubectl create -f storageclass.yml
-#sleep $sleep
 kubectl create -f service.yml
-#sleep $sleep
-kubectl create -f statefulset.yml
-#sleep $sleep
+# kubectl create -f statefulset.yml
 kubectl create -f deployment.yml
-#sleep $sleep
 kubectl get svc postgres-service
 sleep $sleep
 

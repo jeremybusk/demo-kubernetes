@@ -2,16 +2,13 @@
 set -e
 shopt -s expand_aliases
 alias kubectl='microk8s kubectl'
-ip=$(kubectl get svc | grep postgres-service | awk '{print $3}')
-export PGHOST=$ip
+nodeip=$(kubectl get svc | grep postgres-service | awk '{print $3}')
+podip=$(kubectl get pod -o wide | grep "^postgres-" | grep -v state | awk '{print $6}')
+export PGHOST=$podip
 export PGDATABASE=demodb
 export PGUSER=demouser
 export PGPASSWORD=demopass
-
-# PGHOST=$ip
-# PGDATABASE=demodb
-# PGUSER=demouser
-# PGPASSWORD=demopass
+sleep=2
 
 
 get_info(){
@@ -26,13 +23,13 @@ get_info(){
 test_pg(){
   echo "PGPASSWORD=$PGPASSWORD psql -h $PGHOST -U $PGUSER -d $PGDATABASE"
   psql < sqltest.sql 
-  # psql -h $PGHOST -U $PGUSER -d $PGDATABASE < sqltest.sql
 }
 
-# echo "PGPASSWORD=$PGPASSWORD psql -h $PGHOST -U $PGUSER -d $PGDATABASE"
-#  psql -h $PGHOST -U $PGUSER -d $PGDATABASE < sqltest.sql
-# test_pg "$@"
-# test_pg $PGHOST $PGUSER $PGDATABASE 
+
+echo "Testing podip"
+sleep  $sleep 
 test_pg
-kubectl get pod
-kubectl logs postgres-
+export PGHOST=$nodeip
+echo "Testing nodeip"
+sleep $sleep 
+test_pg
