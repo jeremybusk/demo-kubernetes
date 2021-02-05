@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -x
+shopt -s expand_aliases
+alias kubectl='microk8s kubectl'
+
+kubectl delete -f deploy.yml 
+kubectl delete -f service.yml
+kubectl delete -f statefulset.yml
+kubectl delete -f storageclass.yml
+kubectl delete -f configmap.yml
+kubectl delete -f storage.yml
+
+# kubectl get svc postgres
+# sudo microk8s.kubectl run psql -it --rm=true --image=postgres:12 --command -- psql -h 10.152.183.15 -U amazinguser awesomedb
+
+# psql -h localhost -U postgresadmin1 --password -p 31070 postgresdb

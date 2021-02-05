@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+shopt -s expand_aliases
+alias kubectl='microk8s kubectl'
+sleep=1
+
+kubectl create -f configmap.yml
+sleep $sleep
+kubectl create -f storage.yml
+sleep $sleep
+kubectl create -f storageclass.yml
+sleep $sleep
+kubectl create -f service.yml
+sleep $sleep
+kubectl create -f statefulset.yml
+sleep $sleep
+kubectl create -f deployment.yml
+
+kubectl get svc postgres-service
+# apt install -y postgresql-client
+
+# kubectl get svc postgres
+# sudo microk8s.kubectl run psql -it --rm=true --image=postgres:12 --command -- psql -h 10.152.183.15 -U amazinguser awesomedb
+
+# psql -h localhost -U postgresadmin1 --password -p 31070 postgresdb

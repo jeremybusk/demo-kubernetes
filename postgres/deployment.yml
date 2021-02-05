@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+  - port: 5432 
+  selector:
+    app: postgres
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - image: postgres:12
+        name: postgres
+        env:
+          - name: POSTGRES_PASSWORD
+            value: password 
+          - name: POSTGRES_DB
+            value: awesomedb
+          - name: POSTGRES_USER
+            value: amazinguser
+          - name: POSTGRES_PASSWORD
+            value: perfectpassword
+            # POSTGRES_HOST_AUTH_METHOD=trust
+          # Use secret in real usage
+        #- name: MYSQL_ROOT_PASSWORD
+          #value: password
+        ports:
+        - containerPort: 5432 
+          name: postgres
+        volumeMounts:
+        - name: postgres-persistent-storage
+          mountPath: /var/lib/postgres
+      volumes:
+      - name: postgres-persistent-storage
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
