@@ -13,6 +13,11 @@ upstream demodb {
 server {
   listen 9001;
   proxy_pass demodb;
+}
+
+server {
+  listen 19001;
+  proxy_pass demodb;
   # Rate limiting. Tune as needed. # This will break things
   limit_conn addr 1;
   proxy_download_rate 100k;
