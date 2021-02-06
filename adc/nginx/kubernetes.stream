@@ -1,3 +1,7 @@
+# Rate limiting
+# https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_rate
+limit_conn_zone $binary_remote_addr zone=addr:10m;
+
 upstream demodb {
   least_conn;
   server k1:31372;  # k1 - different master kubernetes nodes with exposed port 
@@ -9,4 +13,8 @@ upstream demodb {
 server {
   listen 9001;
   proxy_pass demodb;
+  # Rate limiting. Tune as needed. # This will break things
+  limit_conn addr 1;
+  proxy_download_rate 100k;
+  proxy_upload_rate 100k;
 }
