@@ -10,8 +10,9 @@ http {
 ...
 ```
 
+
 /etc/nginx/conf.d/demodb.stream
-````
+```
 upstream k_demodb {
   least_conn;
   server k1:31372;  # k1 - different master kubernetes nodes with exposed port
@@ -25,6 +26,7 @@ server {
   proxy_pass k_demodb;
 }
 ```
+
 
 Pcap to watch connections and proxy weight settings
 ```
