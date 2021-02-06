@@ -1,0 +1,4 @@
+file="~/.pgpass"
+touch $file 
+chmod 0600 $file 
+echo "127.0.0.1:9001:demodb:demouser:demopass" > $file
