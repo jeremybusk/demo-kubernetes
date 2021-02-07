@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: coredns-command
+  labels:
+    purpose: demonstrate-coredns-reverse-dns
+spec:
+  containers:
+  - name: command-demo-container
+    image: jeremybusk/coredns-rdns 
+    # command: ["/bin/sh", "-c", "sleep 10; apk add curl; curl -LO https://github.com/coredns/coredns/releases/download/v1.8.1/coredns_1.8.1_linux_amd64.tgz -o file.tgz; tar xf coredns_1.8.1_linux_amd64.tgz; curl -LO https://raw.githubusercontent.com/jeremybusk/share/master/Corefile; ./coredns Corefile"]
+    # command: ["/bin/sh", "-c", "apk add curl; curl -LO https://raw.githubusercontent.com/jeremybusk/share/master/Corefile"]
+  restartPolicy: Never 

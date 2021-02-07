@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns-rdns 
+  labels:
+    app: coredns-rdns 
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: coredns-rdns 
+  template:
+    metadata:
+      labels:
+        app: coredns-rdns 
+    spec:
+      containers:
+      - name: coredns-rdns
+        image: jeremybusk/coredns-rdns
+        #  envFrom:
+        # - configMapRef:
+        #    name: postgres-configuration
+        ports:
+        - containerPort: 53 
+          protocol: TCP
+        - containerPort: 53 
+          protocol: UDP 
