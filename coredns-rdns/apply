@@ -3,5 +3,5 @@ set -e
 shopt -s expand_aliases
 alias kubectl='microk8s kubectl'
 
-deployment-demo-coredns-rdns-nfs.yaml
-service-demo-coredns-rdns-nfs.yaml
+kubectl apply -f service-demo-coredns-rdns-nfs.yaml
+kubectl apply -f deployment-demo-coredns-rdns-nfs.yaml
