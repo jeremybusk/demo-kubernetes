@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-cp Corefile /nas/demo-coredns-rdns/conf/Corefile
-chmod 0644 /nas/demo-coredns-rdns/conf/Corefile
