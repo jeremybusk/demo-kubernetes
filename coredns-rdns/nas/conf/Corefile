@@ -19,7 +19,8 @@
     10.0.0.5 host5.test.org
     10.0.0.6 host6.test.org
     10.0.0.7 host7.test.org
-    10.0.0.8 host8.test.org
+    10.0.0.8 tonychanges.test.org
+    10.0.0.9 sw.test.org
     reload 0
     fallthrough
   }
